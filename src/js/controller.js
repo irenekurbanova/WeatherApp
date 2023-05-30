@@ -8,9 +8,9 @@ import humidity from "../img/humidity.png";
 import wind from "../img/wind.png";
 import icons from "url:../img/icons.svg";
 
-// import * as model from "./model";
-import { API_KEY } from "./config";
-import { API_URL } from "./config";
+import * as model from "./model";
+// import { API_KEY } from "./config";
+// import { API_URL } from "./config";
 // import View from "./Views/weatherView";
 // import weatherView from "./Views/weatherView";
 
@@ -36,11 +36,11 @@ const timeout = function (s) {
 };
 
 // Getting current location
-const getLocation = () => {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
-};
+// const getLocation = () => {
+//   return new Promise((resolve, reject) => {
+//     navigator.geolocation.getCurrentPosition(resolve, reject);
+//   });
+// };
 
 const renderSpinner = function (parentElement) {
   const markup = `
@@ -60,48 +60,29 @@ const showWeather = async function () {
     // 1. Render spinner
     renderSpinner(weatherContainer);
 
-    // 2. Loading current weather by geolocation
+    // 2. Getting current location
+    await model.geocodingCityName();
 
-    // getting current location
-    const position = await getLocation();
-    const { latitude, longitude } = position.coords;
-
-    // fetch weather data for current location
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
-    );
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-    let weather = data;
-
-    weather = {
-      cityName: weather.name,
-      description: weather.weather[0].main,
-      temp: weather.main.temp,
-      humidity: weather.main.humidity,
-      wind: weather.wind.speed,
-    };
-    console.log(weather);
+    // 3. Loading current weather by geolocation
+    await model.loadWeather(model.state.search);
 
     // 3. Rendering weather
     const markup = `
        <img src="${clear}" class="weather-icon" />
-       <h1 class="temp">${Math.floor(weather.temp)}&#8451;</h1>
-       <h2 class="city">${weather.cityName}</h2>
+       <h1 class="temp">${Math.floor(model.state.weather.temp)}&#8451;</h1>
+       <h2 class="city">${model.state.weather.cityName}</h2>
        <div class="details">
          <div class="col">
            <img src="${humidity}" alt="humidity icon" />
            <div>
-             <p class="humidity">${weather.humidity}&percnt;</p>
+             <p class="humidity">${model.state.weather.humidity}&percnt;</p>
              <p>Humidity</p>
            </div>
          </div>
          <div class="col">
            <img src="${wind}" alt="wind icon" />
            <div>
-             <p class="wind">${weather.wind} m/s</p>
+             <p class="wind">${model.state.weather.wind} m/s</p>
              <p>Wind speed</p>
            </div>
          </div>
