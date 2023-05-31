@@ -54,9 +54,10 @@ export const loadWeather = async function (cityName) {
 
     state.weather = {
       cityName: weather.name,
-      description: weather.weather[0].main,
+      description: weather.weather[0].description,
       temp: weather.main.temp,
       humidity: weather.main.humidity,
+      pressure: weather.main.pressure,
       wind: weather.wind.speed,
       icon: weather.weather[0].icon,
     };

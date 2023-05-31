@@ -31,7 +31,7 @@ const timeout = function (s) {
 //   });
 // };
 
-const showWeather = async function () {
+const controlWeatherForecast = async function () {
   try {
     // 1. Render spinner
     weatherView._renderSpinner();
@@ -49,11 +49,11 @@ const showWeather = async function () {
   }
 };
 
-window.addEventListener("load", showWeather);
+window.addEventListener("load", controlWeatherForecast);
 searchBtn.addEventListener("click", function (e) {
   model.state.search = searchBox.value;
   console.log(model.state.search);
-  showWeather(model.state.search);
+  controlWeatherForecast(model.state.search);
 });
 
 // //rendering errors in the UI

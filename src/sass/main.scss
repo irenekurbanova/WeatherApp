@@ -9,7 +9,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "system-ui", sans-serif;
   box-sizing: border-box;
 }
 
@@ -18,26 +18,39 @@ html {
 }
 
 body {
-  // background-image: url(../img/yoal-desurmont-jqgsM3B9Fpo-unsplash.jpg);
-  // background-size: auto;
-  // background-repeat: no-repeat;
-  background-color: darkslategrey;
+  background-color: #fff;
 }
 
-.hidden {
-  display: none;
-}
+// .hidden {
+//   display: none;
+// }
 
 .card {
   width: 90%;
   max-width: 47rem;
-  background: linear-gradient(135deg, #167048, #5b548a);
-  // opacity: 0.7;
-  color: #fff;
+  color: black;
   margin: 10rem auto 0;
   border-radius: 2rem;
   padding: 4rem 3.5rem;
   text-align: center;
+  box-shadow: var(--shadow-4);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+
+  &.sunny {
+    background: linear-gradient(-30deg, #ffff75, #ffbc41);
+  }
+  &.cloudy {
+    background: linear-gradient(-60deg, #909da4, #adc0be);
+  }
+  &.partly-cloudy {
+    background: linear-gradient(24deg, #f0aec9, #a590ce);
+  }
+  &.rain {
+    background: linear-gradient(140deg, #76c4f2, #2ecdbb);
+  }
 }
 
 .search {
@@ -50,7 +63,7 @@ body {
 .search input {
   border: 0;
   outline: 0;
-  background: #ebfffc;
+  background: #f0f2f5;
   color: #555;
   padding: 1rem 2.5rem;
   height: 6rem;
@@ -63,7 +76,7 @@ body {
 .search button {
   border: 0;
   outline: 0;
-  background: #ebfffc;
+  background: #f0f2f5;
   border-radius: 50%;
   width: 6rem;
   height: 6rem;
@@ -74,45 +87,76 @@ body {
   width: 1.5rem;
 }
 
-.weather-icon > svg {
-  width: 17rem;
-  margin-top: 3rem;
+.weather {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.weather h1 {
-  font-size: 8rem;
-  font-weight: 500;
+.weather-icon {
+  position: absolute;
+  align-self: center;
+  margin-top: -9rem;
+  background-color: white;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
 }
 
-.weather h2 {
-  font-size: 4rem;
-  font-weight: 400;
-  margin-top: -1rem;
+.temp {
+  & span {
+    font-size: 8rem;
+    font-weight: 500;
+  }
+}
+
+.city {
+  margin-top: 2rem;
+
+  & span {
+    font-size: 4rem;
+    font-weight: 400;
+    margin-top: 2rem;
+  }
+}
+
+.description {
+  // margin-top: 1rem;
+
+  & span {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-top: 2rem;
+  }
 }
 
 .details {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
-  margin-top: 5rem;
+  margin-top: 4rem;
+  gap: 2rem;
 }
 
 .col {
   display: flex;
   align-items: center;
-  text-align: left;
-}
+  justify-content: space-around;
 
-.col img {
-  width: 4rem;
-  margin-right: 1rem;
+  &__icon {
+    & img {
+      width: 5rem;
+    }
+  }
 }
 
 .humidity,
 .wind {
   font-size: 2rem;
   margin-top: -0.6rem;
+  color: black;
 }
 
 .spinner {
@@ -123,7 +167,7 @@ body {
 .spinner svg {
   height: 6rem;
   width: 6rem;
-  fill: #fff;
+  fill: black;
   animation: rotate 2s infinite linear;
 }
 
@@ -133,5 +177,21 @@ body {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@layer open-props {
+  /*  https://open-props.style/  */
+  :root {
+    --shadow-4: 0 -2px 5px 0 hsl(var(--shadow-color) /
+            calc(var(--shadow-strength) + 2%)),
+      0 1px 1px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+      0 2px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+      0 5px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
+      0 9px 9px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+      0 16px 16px -2px hsl(var(--shadow-color) /
+            calc(var(--shadow-strength) + 6%));
+    --shadow-color: 220 3% 15%;
+    --shadow-strength: 5%;
   }
 }
