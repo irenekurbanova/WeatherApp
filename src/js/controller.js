@@ -1,18 +1,7 @@
-import clear from "../img/clear.png";
-import clouds from "../img/clouds.png";
-import rain from "../img/rain.png";
-import drizzle from "../img/drizzle.png";
-import mist from "../img/mist.png";
-import snow from "../img/snow.png";
-import humidity from "../img/humidity.png";
-import wind from "../img/wind.png";
-import icons from "url:../img/icons.svg";
-
 import * as model from "./model";
-// import { API_KEY } from "./config";
-// import { API_URL } from "./config";
 // import View from "./Views/weatherView";
-// import weatherView from "./Views/weatherView";
+import weatherView from "./Views/weatherView";
+import spinner from "url:../img/spinner.svg";
 
 // // Controller is stand for Event Handling
 
@@ -42,23 +31,10 @@ const timeout = function (s) {
 //   });
 // };
 
-const renderSpinner = function (parentElement) {
-  const markup = `
-    <div class="spinner">
-      <svg>
-        <use href="${icons}#icon-loader"></use>
-      </svg>
-    </div>
-    `;
-
-  parentElement.innerHTML = "";
-  parentElement.insertAdjacentHTML("afterbegin", markup);
-};
-
 const showWeather = async function () {
   try {
     // 1. Render spinner
-    renderSpinner(weatherContainer);
+    weatherView._renderSpinner();
 
     // 2. Getting current location
     await model.geocodingCityName();
@@ -67,37 +43,18 @@ const showWeather = async function () {
     await model.loadWeather(model.state.search);
 
     // 3. Rendering weather
-    const markup = `
-       <img src="${clear}" class="weather-icon" />
-       <h1 class="temp">${Math.floor(model.state.weather.temp)}&#8451;</h1>
-       <h2 class="city">${model.state.weather.cityName}</h2>
-       <div class="details">
-         <div class="col">
-           <img src="${humidity}" alt="humidity icon" />
-           <div>
-             <p class="humidity">${model.state.weather.humidity}&percnt;</p>
-             <p>Humidity</p>
-           </div>
-         </div>
-         <div class="col">
-           <img src="${wind}" alt="wind icon" />
-           <div>
-             <p class="wind">${model.state.weather.wind} m/s</p>
-             <p>Wind speed</p>
-           </div>
-         </div>
-       </div> 
-    `;
-    weatherContainer.innerHTML = "";
-    weatherContainer.insertAdjacentHTML("afterbegin", markup);
+    weatherView.render(model.state.weather);
   } catch (err) {
     console.log(err);
   }
 };
 
-// showWeather();
-
 window.addEventListener("load", showWeather);
+searchBtn.addEventListener("click", function (e) {
+  model.state.search = searchBox.value;
+  console.log(model.state.search);
+  showWeather(model.state.search);
+});
 
 // //rendering errors in the UI
 // export const handleError = (errorText, placeToRender) => {
@@ -113,12 +70,6 @@ window.addEventListener("load", showWeather);
 // function toggleWindow() {
 //   weatherContainer.classList.toggle("hidden");
 // }
-
-// searchBtn.addEventListener("click", function (e) {
-//   e.preventDefault();
-//   model.loadWeather(searchBox.value);
-//   weatherView.render(model.state.weather);
-// });
 
 // window.addEventListener("keypress", function (e) {
 //   if (e.key === "Enter") {

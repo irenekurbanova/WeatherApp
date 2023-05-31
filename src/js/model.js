@@ -4,7 +4,6 @@ import { API_URL } from "./config";
 
 export const state = {
   weather: {},
-  // geolocationCoords: [],
   search: {},
 };
 
@@ -17,23 +16,6 @@ export const state = {
 //     humidity: weather.main.humidity,
 //     wind: weather.wind.speed,
 //   };
-// };
-
-// // Getting current city based on geolocation
-// export const getCurrentLocationCityName = async function () {
-//   try {
-//     const position = await getLocation();
-//     const { latitude, longitude } = position.coords;
-//     const res = await fetch(
-//       `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
-//     );
-//     const data = await res.json();
-//     console.log(data[0].name);
-//     const cityName = data[0].name;
-//     return cityName;
-//   } catch (err) {
-//     throw err;
-//   }
 // };
 
 // Getting current location
@@ -61,30 +43,27 @@ export const geocodingCityName = async function () {
 
 // Loading current weather by current geolocation
 export const loadWeather = async function (cityName) {
-  // getting  location coordinates
-  // const position = await getLocation();
-  // const { latitude, longitude } = position.coords;
+  try {
+    const res = await fetch(`${API_URL}&q=${cityName}&appid=${API_KEY}`);
 
-  // fetch weather data for current location
-  // const res = await fetch(
-  //   `${API_URL}&lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
-  // );
+    const data = await res.json();
+    if (!res.ok) throw new Error(`${data.message} (${res.status})`);
 
-  const res = await fetch(`${API_URL}&q=${cityName}&appid=${API_KEY}`);
+    const weather = data;
+    console.log(data);
 
-  const data = await res.json();
-  if (!res.ok) throw new Error(`${data.message} (${res.status})`);
-
-  const weather = data;
-
-  state.weather = {
-    cityName: weather.name,
-    description: weather.weather[0].main,
-    temp: weather.main.temp,
-    humidity: weather.main.humidity,
-    wind: weather.wind.speed,
-  };
-  console.log(state.weather);
+    state.weather = {
+      cityName: weather.name,
+      description: weather.weather[0].main,
+      temp: weather.main.temp,
+      humidity: weather.main.humidity,
+      wind: weather.wind.speed,
+      icon: weather.weather[0].icon,
+    };
+    console.log(state.weather);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 // export const loadWeather = async function (cityName) {
