@@ -1,4 +1,4 @@
-// @import 'base';
+@import "base";
 // @import 'components';
 // @import 'header';
 // @import 'preview';
@@ -6,52 +6,9 @@
 // @import 'recipe';
 // @import 'upload';
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "system-ui", sans-serif;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-body {
-  background-color: #fff;
-}
-
 // .hidden {
 //   display: none;
 // }
-
-.card {
-  width: 90%;
-  max-width: 47rem;
-  color: black;
-  margin: 10rem auto 0;
-  border-radius: 2rem;
-  padding: 4rem 3.5rem;
-  text-align: center;
-  box-shadow: var(--shadow-4);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2.5rem;
-
-  &.sunny {
-    background: linear-gradient(-30deg, #ffff75, #ffbc41);
-  }
-  &.cloudy {
-    background: linear-gradient(-60deg, #909da4, #adc0be);
-  }
-  &.partly-cloudy {
-    background: linear-gradient(24deg, #f0aec9, #a590ce);
-  }
-  &.rain {
-    background: linear-gradient(140deg, #76c4f2, #2ecdbb);
-  }
-}
 
 .search {
   width: 100%;
@@ -63,7 +20,7 @@ body {
 .search input {
   border: 0;
   outline: 0;
-  background: #f0f2f5;
+  background: #fff;
   color: #555;
   padding: 1rem 2.5rem;
   height: 6rem;
@@ -76,7 +33,7 @@ body {
 .search button {
   border: 0;
   outline: 0;
-  background: #f0f2f5;
+  background: #fff;
   border-radius: 50%;
   width: 6rem;
   height: 6rem;
@@ -100,9 +57,11 @@ body {
   align-self: center;
   margin-top: -9rem;
   background-color: white;
-  width: 10rem;
-  height: 10rem;
   border-radius: 100%;
+
+  & img {
+    width: 10rem;
+  }
 }
 
 .temp {
@@ -156,7 +115,7 @@ body {
 .wind {
   font-size: 2rem;
   margin-top: -0.6rem;
-  color: black;
+  color: inherit;
 }
 
 .spinner {
@@ -177,21 +136,5 @@ body {
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@layer open-props {
-  /*  https://open-props.style/  */
-  :root {
-    --shadow-4: 0 -2px 5px 0 hsl(var(--shadow-color) /
-            calc(var(--shadow-strength) + 2%)),
-      0 1px 1px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
-      0 2px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
-      0 5px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
-      0 9px 9px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
-      0 16px 16px -2px hsl(var(--shadow-color) /
-            calc(var(--shadow-strength) + 6%));
-    --shadow-color: 220 3% 15%;
-    --shadow-strength: 5%;
   }
 }

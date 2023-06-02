@@ -24,13 +24,6 @@ const timeout = function (s) {
   });
 };
 
-// Getting current location
-// const getLocation = () => {
-//   return new Promise((resolve, reject) => {
-//     navigator.geolocation.getCurrentPosition(resolve, reject);
-//   });
-// };
-
 const controlWeatherForecast = async function () {
   try {
     // 1. Render spinner
@@ -50,21 +43,16 @@ const controlWeatherForecast = async function () {
 };
 
 window.addEventListener("load", controlWeatherForecast);
-searchBtn.addEventListener("click", function (e) {
-  model.state.search = searchBox.value;
-  console.log(model.state.search);
-  controlWeatherForecast(model.state.search);
+searchBtn.addEventListener("click", async function (e) {
+  e.preventDefault();
+  await model.loadWeather(searchBox.value);
+  weatherView.render(model.state.weather);
+  console.log(model.state.weather);
 });
 
 // //rendering errors in the UI
 // export const handleError = (errorText, placeToRender) => {
 //   placeToRender.textContent = errorText;
-// };
-
-// //removing content from the UI
-// export const clearUI = (placeToClear) => {
-//   placeToClear.innerHTML = "";
-//   placeToClear.textContent = "";
 // };
 
 // function toggleWindow() {

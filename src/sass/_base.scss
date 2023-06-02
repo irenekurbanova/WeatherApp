@@ -5,26 +5,83 @@
 // $color-grey-light-1: #f9f5f3; // Light background
 // $color-grey-light-2: #f2efee; // Light lines
 // $color-grey-light-3: #d3c7c3; // Light text (placeholder)
-// $color-grey-dark-1: #615551; // Normal text
 // $color-grey-dark-2: #918581; // Lighter text
 
 // $gradient: linear-gradient(to right bottom, $color-grad-1, $color-grad-2);
 
-// $bp-large: 78.15em; // 1250px
-// $bp-medium: 61.25em; // 980px
-// $bp-small: 37.5em; // 600px
-// $bp-smallest: 31.25em; // 500px
-
-// * {
-//   margin: 0;
-//   padding: 0;
+// @layer open-props {
+//   /*  https://open-props.style/  */
+//   :root {
+//     --shadow-4: 0 -2px 5px 0 hsl(var(--shadow-color) /
+//             calc(var(--shadow-strength) + 2%)),
+//       0 1px 1px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+//       0 2px 2px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 3%)),
+//       0 5px 5px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 4%)),
+//       0 9px 9px -2px hsl(var(--shadow-color) / calc(var(--shadow-strength) + 5%)),
+//       0 16px 16px -2px hsl(var(--shadow-color) /
+//             calc(var(--shadow-strength) + 6%));
+//     --shadow-color: 220 3% 15%;
+//     --shadow-strength: 5%;
+//   }
 // }
+$bp-large: 78.15em; // 1250px
+$bp-medium: 61.25em; // 980px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 31.25em; // 500px
 
-// *,
-// *::before,
-// *::after {
-//   box-sizing: inherit;
-// }
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "system-ui", sans-serif;
+  background-color: #f8fafc;
+}
+
+.card {
+  width: 90%;
+  max-width: 47rem;
+  color: black;
+  margin: 10rem auto 0;
+  border-radius: 2rem;
+  padding: 4rem 3.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-4);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  box-shadow: 0 2rem 3rem 0.5rem rgba(rgb(0, 0, 0), 0.2);
+
+  &.sunny {
+    background: linear-gradient(-30deg, #ffff75, #ffbc41);
+  }
+  &.night {
+    background: linear-gradient(30deg, #360033, #0b8793);
+    color: white;
+  }
+  &.cloudy {
+    background: linear-gradient(-60deg, #909da4, #adc0be);
+  }
+  &.partly-cloudy {
+    background: linear-gradient(24deg, #f0aec9, #a590ce);
+  }
+  &.rain {
+    background: linear-gradient(140deg, #76c4f2, #2ecdbb);
+  }
+}
 
 // html {
 //   box-sizing: border-box;

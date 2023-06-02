@@ -1,13 +1,4 @@
 // // View is stand for DOM changing
-// export const city = document.querySelector(".city");
-// export const temp = document.querySelector(".temp");
-// export const humidity = document.querySelector(".humidity");
-// export const wind = document.querySelector(".wind");
-// export const weatherIcon = document.querySelector(".weather-icon");
-// export const enterEvent = document.querySelector(".enter-event");
-// export const card = document.querySelector(".card");
-// import View from "./View.js";
-// import humidity from "../../img/humidity.png";
 import humidity from "url:../../img/humidity.svg";
 import wind from "url:../../img/wind.svg";
 import barometer from "../../img/barometer.svg";
@@ -61,77 +52,99 @@ class WeatherView {
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
   };
 
+  _clearClassList() {
+    this.#cardElement.classList = "card";
+  }
+
   #generateIcon() {
     if (this.#data.icon === "01d") {
+      this._clearClassList();
       this.#cardElement.classList.add("sunny");
       return icon01d;
     }
     if (this.#data.icon === "01n") {
-      this.#cardElement.classList.add("sunny");
+      this._clearClassList();
+      this.#cardElement.classList.add("night");
       return icon01n;
     }
     if (this.#data.icon === "02d") {
+      this._clearClassList();
       this.#cardElement.classList.add("partly-cloudy");
       return icon02d;
     }
     if (this.#data.icon === "02n") {
-      this.#cardElement.classList.add("partly-cloudy");
+      this._clearClassList();
+      this.#cardElement.classList.add("night");
       return icon02n;
     }
     if (this.#data.icon === "03d") {
+      this._clearClassList();
       this.#cardElement.classList.add("cloudy");
       return icon03d;
     }
     if (this.#data.icon === "03n") {
-      this.#cardElement.classList.add("cloudy");
+      this._clearClassList();
+      this.#cardElement.classList.add("night");
       return icon03n;
     }
     if (this.#data.icon === "04d") {
+      this._clearClassList();
       this.#cardElement.classList.add("cloudy");
       return icon04d;
     }
     if (this.#data.icon === "04n") {
-      this.#cardElement.classList.add("cloudy");
+      this._clearClassList();
+      this.#cardElement.classList.add("night");
       return icon04n;
     }
     if (this.#data.icon === "09d") {
+      this._clearClassList();
       this.#cardElement.classList.add("rain");
       return icon09d;
     }
     if (this.#data.icon === "09n") {
-      this.#cardElement.classList.add("rain");
+      this._clearClassList();
+      this.#cardElement.classList.add("night");
       return icon09n;
     }
     if (this.#data.icon === "10d") {
+      this._clearClassList();
       this.#cardElement.classList.add("rain");
       return icon10d;
     }
     if (this.#data.icon === "10n") {
-      this.#cardElement.classList.add("rain");
+      this._clearClassList();
+      this.#cardElement.classList.add("night");
       return icon10n;
     }
     if (this.#data.icon === "11d") {
+      this._clearClassList();
       this.#cardElement.classList.add("rain");
       return icon11d;
     }
     if (this.#data.icon === "11n") {
-      this.#cardElement.classList.add("rain");
+      this._clearClassList();
+      this.#cardElement.classList.add("night");
       return icon11n;
     }
     if (this.#data.icon === "13d") {
+      this._clearClassList();
       this.#cardElement.classList.add("rain");
       return icon13d;
     }
     if (this.#data.icon === "13n") {
-      this.#cardElement.classList.add("rain");
+      this._clearClassList();
+      this.#cardElement.classList.add("night");
       return icon13n;
     }
     if (this.#data.icon === "50d") {
+      this._clearClassList();
       this.#cardElement.classList.add("partly-cloudy");
       return icon50d;
     }
     if (this.#data.icon === "50n") {
-      this.#cardElement.classList.add("partly-cloudy");
+      this._clearClassList();
+      this.#cardElement.classList.add("night");
       return icon50n;
     }
   }
