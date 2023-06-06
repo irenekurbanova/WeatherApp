@@ -3,24 +3,24 @@ import humidity from "url:../../img/humidity.svg";
 import wind from "url:../../img/wind.svg";
 import barometer from "url:../../img/barometer.svg";
 import spinner from "url:../../img/spinner.svg";
-import icon01d from "url:../../img/openweathermap/01d.svg";
-import icon01n from "url:../../img/openweathermap/01n.svg";
-import icon02d from "url:../../img/openweathermap/02d.svg";
-import icon02n from "url:../../img/openweathermap/02n.svg";
-import icon03d from "url:../../img/openweathermap/03d.svg";
-import icon03n from "url:../../img/openweathermap/03n.svg";
-import icon04d from "url:../../img/openweathermap/04d.svg";
-import icon04n from "url:../../img/openweathermap/04n.svg";
-import icon09d from "url:../../img/openweathermap/09d.svg";
-import icon09n from "url:../../img/openweathermap/09n.svg";
-import icon10d from "url:../../img/openweathermap/10d.svg";
-import icon10n from "url:../../img/openweathermap/10n.svg";
-import icon11d from "url:../../img/openweathermap/11d.svg";
-import icon11n from "url:../../img/openweathermap/11n.svg";
-import icon13d from "url:../../img/openweathermap/13d.svg";
-import icon13n from "url:../../img/openweathermap/13n.svg";
-import icon50d from "url:../../img/openweathermap/50d.svg";
-import icon50n from "url:../../img/openweathermap/50n.svg";
+import icon01d from "url:../../img/01d.svg";
+import icon01n from "url:../../img/01n.svg";
+import icon02d from "url:../../img/02d.svg";
+import icon02n from "url:../../img/02n.svg";
+import icon03d from "url:../../img/03d.svg";
+import icon03n from "url:../../img/03n.svg";
+import icon04d from "url:../../img/04d.svg";
+import icon04n from "url:../../img/04n.svg";
+import icon09d from "url:../../img/09d.svg";
+import icon09n from "url:../../img/09n.svg";
+import icon10d from "url:../../img/10d.svg";
+import icon10n from "url:../../img/10n.svg";
+import icon11d from "url:../../img/11d.svg";
+import icon11n from "url:../../img/11n.svg";
+import icon13d from "url:../../img/13d.svg";
+import icon13n from "url:../../img/13n.svg";
+import icon50d from "url:../../img/50d.svg";
+import icon50n from "url:../../img/50n.svg";
 
 class WeatherView {
   #parentElement = document.querySelector(".weather");
@@ -167,7 +167,7 @@ class WeatherView {
   #generateMarkup() {
     return `
        <div class="weather-icon">
-        <img src="${this.#generateIcon()}.svg" alt="weather icon"/>
+        <img src="${this.#generateIcon()}" alt="weather icon"/>
        </div>
        <div class="city"><span>${this.#data.cityName}</span></div>
        <div class="temp"><span>${Math.floor(
