@@ -40,7 +40,9 @@ export const geocodingCityName = async function () {
 
     state.search = data[0].name;
   } catch (err) {
-    console.log(err);
+    throw new Error(
+      `OOPS! Could not find your location: ${err.message.toLowerCase()}`
+    );
   }
 };
 
@@ -50,7 +52,6 @@ export const loadWeather = async function (cityName) {
     const data = await getJSON(`${API_URL}&q=${cityName}&appid=${API_KEY}`);
 
     const weather = data;
-    console.log(data);
 
     state.weather = {
       cityName: weather.name,
@@ -64,5 +65,14 @@ export const loadWeather = async function (cityName) {
     console.log(state.weather);
   } catch (err) {
     console.log(err);
+    throw err;
+  }
+};
+
+export const loadSearchResults = async function (query) {
+  try {
+    const data = await getJSON(`${API_URL}&q=${query}&appid=${API_KEY}`);
+  } catch (err) {
+    throw err;
   }
 };

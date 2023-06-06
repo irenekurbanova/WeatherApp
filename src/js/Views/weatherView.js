@@ -1,7 +1,7 @@
 // // View is stand for DOM changing
 import humidity from "url:../../img/humidity.svg";
 import wind from "url:../../img/wind.svg";
-import barometer from "../../img/barometer.svg";
+import barometer from "url:../../img/barometer.svg";
 import spinner from "url:../../img/spinner.svg";
 import icon01d from "url:../../img/openweathermap/01d.svg";
 import icon01n from "url:../../img/openweathermap/01n.svg";
@@ -26,6 +26,7 @@ class WeatherView {
   #parentElement = document.querySelector(".weather");
   #cardElement = document.querySelector(".card");
   #data;
+  #errorMessage = "We could not find that city name. Please try another one!";
 
   render(data) {
     this.#data = data;
@@ -35,11 +36,15 @@ class WeatherView {
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
+  addHandlerRender(handler) {
+    window.addEventListener("load", handler);
+  }
+
   _clearUI() {
     this.#parentElement.innerHTML = "";
   }
 
-  _renderSpinner = function () {
+  _renderSpinner() {
     const markup = `
       <div class="spinner">
         <svg>
@@ -50,7 +55,17 @@ class WeatherView {
 
     this._clearUI();
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
-  };
+  }
+
+  _renderError(message = this.#errorMessage) {
+    const markup = `
+      <div class="error">
+        <p>${message}</p>
+      </div>
+    `;
+    this._clearUI();
+    this.#parentElement.insertAdjacentHTML("afterbegin", markup);
+  }
 
   _clearClassList() {
     this.#cardElement.classList = "card";

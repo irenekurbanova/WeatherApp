@@ -53,12 +53,16 @@ body {
 .card {
   width: 90%;
   max-width: 47rem;
+  background: linear-gradient(
+    60deg,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
   color: black;
   margin: 10rem auto 0;
   border-radius: 2rem;
   padding: 4rem 3.5rem;
   text-align: center;
-  box-shadow: var(--shadow-4);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

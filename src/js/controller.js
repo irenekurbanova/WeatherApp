@@ -1,28 +1,9 @@
 import * as model from "./model";
-// import View from "./Views/weatherView";
 import weatherView from "./Views/weatherView";
-import spinner from "url:../img/spinner.svg";
 
-// // Controller is stand for Event Handling
-
+// Controller is stand for Event Handling
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
-const weatherContainer = document.querySelector(".weather");
-
-const city = document.querySelector(".city");
-const temp = document.querySelector(".temp");
-const humidity = document.querySelector(".humidity");
-const wind = document.querySelector(".wind");
-const weatherIcon = document.querySelector(".weather-icon");
-const card = document.querySelector(".card");
-
-const timeout = function (s) {
-  return new Promise((_, rej) => {
-    setTimeout(function () {
-      rej(new Error(`Request took too long! Timeout after ${s} seconds`));
-    }, s * 1000);
-  });
-};
 
 const controlWeatherForecast = async function () {
   try {
@@ -38,26 +19,24 @@ const controlWeatherForecast = async function () {
     // 3. Rendering weather
     weatherView.render(model.state.weather);
   } catch (err) {
-    console.log(err);
+    weatherView._renderError(`${err.message}`);
   }
 };
 
-window.addEventListener("load", controlWeatherForecast);
+const controlSearchResults = async function () {};
+
+const init = function () {
+  weatherView.addHandlerRender(controlWeatherForecast);
+};
+
+init();
+
 searchBtn.addEventListener("click", async function (e) {
   e.preventDefault();
   await model.loadWeather(searchBox.value);
   weatherView.render(model.state.weather);
   console.log(model.state.weather);
 });
-
-// //rendering errors in the UI
-// export const handleError = (errorText, placeToRender) => {
-//   placeToRender.textContent = errorText;
-// };
-
-// function toggleWindow() {
-//   weatherContainer.classList.toggle("hidden");
-// }
 
 // window.addEventListener("keypress", function (e) {
 //   if (e.key === "Enter") {
