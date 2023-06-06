@@ -1,56 +1,46 @@
 import * as model from "./model";
 import weatherView from "./Views/weatherView";
+import searchView from "./Views/searchView";
 
-// Controller is stand for Event Handling
-const searchBox = document.querySelector(".search input");
-const searchBtn = document.querySelector(".search button");
-
-const controlWeatherForecast = async function () {
+const controlGeolocationWeatherForecast = async function () {
   try {
     // 1. Render spinner
     weatherView._renderSpinner();
 
-    // 2. Getting current location
-    await model.geocodingCityName();
-
     // 3. Loading current weather by geolocation
-    await model.loadWeather(model.state.search);
+    await model.loadGeolocationWeather();
 
     // 3. Rendering weather
-    weatherView.render(model.state.weather);
+    weatherView.render(model.state.geolocationWeather);
   } catch (err) {
-    weatherView._renderError(`${err.message}`);
+    weatherView._renderError(
+      `OOPS! Could not find your location: ${err.message.toLowerCase()}`
+    );
   }
 };
 
-const controlSearchResults = async function () {};
+const controlSearchResults = async function () {
+  try {
+    const query = searchView.getQuery();
+    if (!query) return;
+    console.log(query);
+
+    // 1. Render spinner
+    weatherView._renderSpinner();
+
+    // 2. Loading weather by query
+    await model.loadSearchResults(query);
+
+    // 3. Rendering weather
+    weatherView.render(model.state.searchWeather.result);
+  } catch (err) {
+    weatherView._renderError();
+  }
+};
 
 const init = function () {
-  weatherView.addHandlerRender(controlWeatherForecast);
+  weatherView.addHandlerRender(controlGeolocationWeatherForecast);
+  searchView.addHandlerRender(controlSearchResults);
 };
 
 init();
-
-searchBtn.addEventListener("click", async function (e) {
-  e.preventDefault();
-  await model.loadWeather(searchBox.value);
-  weatherView.render(model.state.weather);
-  console.log(model.state.weather);
-});
-
-// window.addEventListener("keypress", function (e) {
-//   if (e.key === "Enter") {
-//     e.preventDefault();
-//     model.loadWeather(searchBox.value);
-//     weatherView.render(model.state.weather);
-//     // console.log("enter was pressed");
-//     // toggleWindow();
-//     // confetti({
-//     //   particleCount: 100,
-//     //   spread: 70,
-//     //   origin: { y: 0.6 },
-//     // });
-
-//     // this.setTimeout(toggleWindow, 2500);
-//   }
-// });
