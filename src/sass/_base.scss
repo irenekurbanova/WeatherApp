@@ -1,7 +1,7 @@
-// $bp-large: 78.15em; // 1250px
-// $bp-medium: 61.25em; // 980px
-// $bp-small: 37.5em; // 600px
-// $bp-smallest: 31.25em; // 500px
+$bp-large: 78.15em; // 1250px
+$bp-medium: 61.25em; // 980px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 31.25em; // 500px
 
 * {
   margin: 0;
@@ -17,6 +17,10 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 50%;
+  }
 }
 
 body {
@@ -58,5 +62,9 @@ body {
   }
   &.rain {
     background: linear-gradient(140deg, #76c4f2, #2ecdbb);
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    padding: 4rem 2rem;
   }
 }

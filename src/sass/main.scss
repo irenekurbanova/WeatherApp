@@ -1,4 +1,8 @@
 @use "base";
+$bp-large: 78.15em; // 1250px
+$bp-medium: 61.25em; // 980px
+$bp-small: 37.5em; // 600px
+$bp-smallest: 22.8em; // 500px
 
 .search {
   width: 100%;
@@ -96,6 +100,10 @@
   justify-content: space-between;
   margin-top: 4rem;
   gap: 2rem;
+
+  @media only screen and (max-width: $bp-smallest) {
+    gap: 0.5rem;
+  }
 }
 
 .col {
@@ -106,6 +114,10 @@
   &__icon {
     & img {
       width: 5rem;
+
+      @media only screen and (max-width: $bp-smallest) {
+        width: 4rem;
+      }
     }
   }
 }
@@ -115,6 +127,10 @@
   font-size: 2rem;
   margin-top: -0.6rem;
   color: inherit;
+
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 1.5rem;
+  }
 }
 
 .spinner {
