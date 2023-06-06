@@ -25,16 +25,16 @@ const controlSearchResults = async function () {
     if (!query) return;
     console.log(query);
 
-    // 1. Render spinner
-    weatherView._renderSpinner();
-
     // 2. Loading weather by query
     await model.loadSearchResults(query);
 
     // 3. Rendering weather
     weatherView.render(model.state.searchWeather.result);
   } catch (err) {
-    weatherView._renderError();
+    console.log(err);
+    weatherView._renderError(
+      "We could not find that city name. Please try another one!"
+    );
   }
 };
 

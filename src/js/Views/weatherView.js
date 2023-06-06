@@ -26,7 +26,6 @@ class WeatherView {
   #parentElement = document.querySelector(".weather");
   #cardElement = document.querySelector(".card");
   #data;
-  #errorMessage = "We could not find that city name. Please try another one!";
 
   render(data) {
     this.#data = data;
@@ -52,18 +51,18 @@ class WeatherView {
         </svg>
       </div>
       `;
-
     this._clearUI();
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
-  _renderError(message = this.#errorMessage) {
+  _renderError(message) {
     const markup = `
       <div class="error">
         <p>${message}</p>
       </div>
     `;
     this._clearUI();
+    this._clearClassList();
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 

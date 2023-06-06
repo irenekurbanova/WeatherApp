@@ -1,14 +1,4 @@
-@import "base";
-// @import 'components';
-// @import 'header';
-// @import 'preview';
-// @import 'searchResults';
-// @import 'recipe';
-// @import 'upload';
-
-// .hidden {
-//   display: none;
-// }
+@use "base";
 
 .search {
   width: 100%;
