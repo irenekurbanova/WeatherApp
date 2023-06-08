@@ -85,8 +85,6 @@ $bp-smallest: 22.8em; // 500px
 }
 
 .description {
-  // margin-top: 1rem;
-
   & span {
     font-size: 3rem;
     font-weight: 300;
@@ -95,41 +93,50 @@ $bp-smallest: 22.8em; // 500px
 }
 
 .details {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 4rem;
-  gap: 2rem;
+  width: 100%;
+  display: grid;
+  margin-top: 3rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
 
   @media only screen and (max-width: $bp-smallest) {
     gap: 0.5rem;
   }
-}
 
-.col {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  &__content {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0.15rem 0.15rem 0.3rem rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-width: none;
 
-  &__icon {
-    & img {
-      width: 5rem;
+    &_title {
+      padding-top: 0.5rem;
+      font-size: 1.5rem;
+    }
 
-      @media only screen and (max-width: $bp-smallest) {
+    &_icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & img {
         width: 4rem;
+        filter: drop-shadow(0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.3));
+      }
+
+      & span {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: inherit;
+
+        @media only screen and (max-width: $bp-smallest) {
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
       }
     }
-  }
-}
-
-.humidity,
-.wind {
-  font-size: 2rem;
-  margin-top: -0.6rem;
-  color: inherit;
-
-  @media only screen and (max-width: $bp-smallest) {
-    font-size: 1.5rem;
   }
 }
 

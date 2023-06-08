@@ -3,6 +3,8 @@ $bp-medium: 61.25em; // 980px
 $bp-small: 37.5em; // 600px
 $bp-smallest: 31.25em; // 500px
 
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -24,13 +26,13 @@ html {
 }
 
 body {
-  font-family: "system-ui", sans-serif;
+  font-family: "Roboto", system-ui, sans-serif;
   background-color: #f8fafc;
 }
 
 .card {
   width: 90%;
-  max-width: 47rem;
+  max-width: 45rem;
   background: linear-gradient(
     60deg,
     rgba(238, 174, 202, 1) 0%,
@@ -41,10 +43,12 @@ body {
   border-radius: 2rem;
   padding: 4rem 3.5rem;
   text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2.5rem;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: center;
+  display: grid;
+  grid-template-rows: min-content min-content;
+  gap: 2rem;
   box-shadow: 0 2rem 3rem 0.5rem rgba(rgb(0, 0, 0), 0.2);
 
   &.sunny {

@@ -177,25 +177,31 @@ class WeatherView {
          this.#data.description.slice(1)
        }</span></div>
        <div class="details">
-         <div class="col">
-           <div class="col__icon"><img src="${humidity}" alt="humidity icon"/></div>
-           <div>
-             <p class="humidity">${this.#data.humidity}&percnt;</p>
-             <p>Humidity</p>
+         <div class="details__content">
+           <div class="details__content_title">
+            <p>Humidity</p>
+           </div>
+           <div class="details__content_icon">
+             <img src="${humidity}" alt="humidity icon"/>
+             <span class="humidity">${this.#data.humidity}&percnt;</span>
            </div>
          </div>
-         <div class="col">
-          <div class="col__icon"><img src="${wind}" alt="wind icon"/></div>
-          <div>
-             <p class="wind">${Math.floor(this.#data.wind)} m/s</p>
-             <p>Wind speed</p>
+         <div class="details__content">
+           <div class="details__content_title">
+            <p>Wind speed</p>
+           </div>
+           <div class="details__content_icon">
+             <img src="${wind}" alt="wind icon"/>
+             <span class="humidity">${Math.floor(this.#data.wind)} m/s</span>
            </div>
          </div>
-         <div class="col">
-          <div class="col__icon"><img src="${barometer}" alt="wind icon"/></div>
-          <div>
-             <p class="wind">${Math.floor(this.#data.pressure)} hPa</p>
-             <p>Pressure</p>
+         <div class="details__content">
+           <div class="details__content_title">
+            <p>Pressure</p>
+           </div>
+           <div class="details__content_icon">
+             <img src="${barometer}" alt="barometer icon"/>
+             <span class="humidity">${Math.floor(this.#data.pressure)}hPa</span>
            </div>
          </div>
        </div> 
